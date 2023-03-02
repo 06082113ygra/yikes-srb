@@ -12,6 +12,8 @@ import springfox.documentation.spring.web.plugins.ApiSelectorBuilder;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.util.function.Predicate;
+
 /**
  * <pre>
  *
@@ -36,7 +38,7 @@ public class SwaggerConfig {
                 .select()
                 // 指定@ApiOperation标注的接口被加入文档
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com/yikes/core/controller/admin/*"))
                 .paths(this::filterPath);
 
         return builder.build();

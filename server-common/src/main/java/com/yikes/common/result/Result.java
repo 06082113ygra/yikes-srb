@@ -30,11 +30,9 @@ public class Result<T> {
      * @param <T>
      * @return
      */
-    protected static <T> Result<T> build(T data) {
+    public static <T> Result<T> build(T data) {
         Result<T> result = new Result<>();
-        if (data != null) {
-            result.setData(data);
-        }
+        result.setData(data);
         return result;
     }
 
@@ -52,7 +50,7 @@ public class Result<T> {
         return result;
     }
 
-    public static<T> Result<T> ok(){
+    public static<T> Result<T> ok() {
         return Result.ok(null);
     }
 
@@ -62,13 +60,13 @@ public class Result<T> {
      * @param <T>
      * @return
      */
-    public static<T> Result<T> ok(T data){
+    public static<T> Result<T> ok(T data) {
         Result<T> result = build(data);
         return build(data, ResultCodeEnum.SUCCESS);
     }
 
-    public static<T> Result<T> fail(){
-        return Result.fail(null);
+    public static<T> Result<T> error() {
+        return Result.error(null);
     }
 
     /**
@@ -77,7 +75,7 @@ public class Result<T> {
      * @param <T>
      * @return
      */
-    public static<T> Result<T> fail(T data){
+    public static<T> Result<T> error(T data) {
         Result<T> result = build(data);
         return build(data, ResultCodeEnum.ERROR);
     }
@@ -87,7 +85,7 @@ public class Result<T> {
      * @param msg
      * @return
      */
-    public Result<T> message(String msg){
+    public Result<T> message(String msg) {
         this.setMessage(msg);
         return this;
     }
@@ -97,7 +95,7 @@ public class Result<T> {
      * @param code
      * @return
      */
-    public Result<T> code(Integer code){
+    public Result<T> code(Integer code) {
         this.setCode(code);
         return this;
     }
