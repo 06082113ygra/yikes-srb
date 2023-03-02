@@ -2,6 +2,7 @@
 <configuration debug="false">
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
     <property name="LOG_HOME" value="././logs/server-core"/>
+    <property name="ENCODING" value="UTF-8" />
 
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
@@ -55,5 +56,15 @@
     </root>
     <logger name="DING_OPEN_CLIENT_SDK_LOGGER" level="OFF">
     </logger>
+
+    <!--<springProfile name="dev, test">
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="dailyFile"/>
+            <appender-ref ref="serviceERRORFile"/>
+        </root>
+        <logger name="DING_OPEN_CLIENT_SDK_LOGGER" level="OFF">
+        </logger>
+    </springProfile>-->
 
 </configuration>

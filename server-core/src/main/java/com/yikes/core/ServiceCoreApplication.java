@@ -2,6 +2,7 @@ package com.yikes.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * <pre>
@@ -13,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @description: TODO
  */
 @SpringBootApplication
+@ComponentScan({"com.yikes"})
 public class ServiceCoreApplication {
 
     public static void main(String[] args) {
