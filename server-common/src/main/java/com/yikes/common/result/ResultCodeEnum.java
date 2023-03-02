@@ -1,8 +1,10 @@
 package com.yikes.common.result;
 
+import com.yikes.common.enums.ExceptionEnumFactory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.http.HttpStatus;
 
 /**
  * <pre>
@@ -15,11 +17,24 @@ import lombok.ToString;
  */
 @Getter
 @AllArgsConstructor
-@ToString
-public enum ResultCodeEnum {
+public enum ResultCodeEnum implements ExceptionEnumFactory {
 
     SUCCESS(0, "成功"),
     ERROR(-1, "服务器内部错误"),
+
+    /**
+     * 登录超时，请重新登录
+     */
+    LOGIN_EXPIRE(HttpStatus.BAD_REQUEST.value(), "登录超时，请重新登录"),
+    /**
+     * 非法签名，请重新登录
+     */
+    AUTH_ILLEGAL(HttpStatus.BAD_REQUEST.value(), "非法签名，请重新登录"),
+    /**
+     * 服务内部错误
+     */
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR.value(), "服务内部错误"),
+
 
     //-1xx 服务器错误
     BAD_SQL_GRAMMAR_ERROR(-101, "sql语法错误"),
@@ -60,7 +75,27 @@ public enum ResultCodeEnum {
     WEIXIN_FETCH_USERINFO_ERROR(-603, "获取用户信息失败"),
     ;
 
+
     private final Integer code;
     private final String message;
 
+    @Override
+    public Integer code() {
+        return null;
+    }
+
+    @Override
+    public String desc() {
+        return null;
+    }
+
+    /**
+     * 判断错误码是否相对
+     *
+     * @param code 错误码
+     * @return boolean
+     */
+    public boolean eq(int code) {
+        return this.code == code;
+    }
 }
