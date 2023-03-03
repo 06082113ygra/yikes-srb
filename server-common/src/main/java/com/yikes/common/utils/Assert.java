@@ -1,5 +1,6 @@
 package com.yikes.common.utils;
 
+import com.yikes.common.enums.BaseExceptionEnum;
 import com.yikes.common.enums.ExceptionEnumFactory;
 import com.yikes.common.exception.BusinessException;
 import com.yikes.common.exception.CommonException;
@@ -195,7 +196,7 @@ public abstract class Assert {
      */
     public static <T> void isSuccess(Result<T> resp) {
         if (!ResultCodeEnum.SUCCESS.eq(resp.getCode())) {
-            throw CommonException.build(ResultCodeEnum.INTERNAL_SERVER_ERROR);
+            throw CommonException.build(BaseExceptionEnum.INTERNAL_SERVER_ERROR);
         }
     }
 

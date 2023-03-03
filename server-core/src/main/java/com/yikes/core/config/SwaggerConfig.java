@@ -38,7 +38,7 @@ public class SwaggerConfig {
                 .select()
                 // 指定@ApiOperation标注的接口被加入文档
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-                .apis(RequestHandlerSelectors.basePackage("com/yikes/core/controller/admin/*"))
+//                .apis(RequestHandlerSelectors.basePackage("com/yikes/core/controller/admin/*"))
                 .paths(this::filterPath);
 
         return builder.build();
@@ -46,11 +46,8 @@ public class SwaggerConfig {
 
     private boolean filterPath(String path) {
         boolean ret = path.endsWith("/error");
-        if (ret) {
-            return false;
-        }
+        return !ret;
         // 这块可以写其他的过滤逻辑
-        return true;
     }
 
     private ApiInfo adminApiInfo() {

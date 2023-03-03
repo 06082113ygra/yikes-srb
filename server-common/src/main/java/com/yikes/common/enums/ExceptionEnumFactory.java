@@ -1,6 +1,5 @@
 package com.yikes.common.enums;
 
-import io.swagger.models.auth.In;
 
 /**
  * 异常枚举类工厂接口

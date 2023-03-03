@@ -1,10 +1,14 @@
 package com.yikes.core.controller.admin;
 
-import cn.hutool.core.util.ObjectUtil;
+import com.yikes.common.enums.BaseExceptionEnum;
+import com.yikes.common.exception.CommonException;
+import com.yikes.common.result.ResultCodeEnum;
 import com.yikes.common.utils.Assert;
 import com.yikes.common.result.Result;
-import com.yikes.common.result.ResultCodeEnum;
+import com.yikes.common.utils.BeanConvert;
 import com.yikes.core.pojo.entity.IntegralGrade;
+import com.yikes.core.pojo.param.IntegralGradeParam;
+import com.yikes.core.pojo.vo.IntegralGradeVO;
 import com.yikes.core.service.IntegralGradeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,35 +37,30 @@ public class AdminIntegralGradeController {
 
     @ApiOperation("列表")
     @GetMapping("/list")
-    public Result<List<IntegralGrade>> listAll(){
+    public Result<List<IntegralGradeVO>> listAll(){
 
-        return Result.build(service.list());
+        List<IntegralGradeVO> list = BeanConvert.toBeanList(service.list(), IntegralGradeVO.class);
+        return Result.build(list);
     }
 
     @ApiOperation(value = "根据id删除积分等级", notes="逻辑删除")
     @DeleteMapping("/remove")
     public Result<?> remove(@RequestParam("id") Long id) {
-        boolean remove = service.removeById(id);
 
-        if (remove) {
-            return Result.ok().message("删除成功");
-        } else {
-            return Result.error().message("删除失败");
-        }
+        boolean remove = service.removeById(id);
+        Assert.isTure(remove, CommonException.build(BaseExceptionEnum.DELETION_FAILURE));
+        return Result.ok();
     }
 
     @ApiOperation("新增")
     @PostMapping("/add")
-    public Result<?> add(@Valid @RequestBody IntegralGrade integralGrade) {
+    public Result<?> add(@Valid @RequestBody IntegralGradeParam param) {
 
-        Assert.notNull(integralGrade.getBorrowAmount(), ResultCodeEnum.BORROW_AMOUNT_NULL_ERROR);
+        Assert.notNull(param.getBorrowAmount(), ResultCodeEnum.BORROW_AMOUNT_NULL_ERROR);
 
-        boolean save = service.save(integralGrade);
-        if (save) {
-            return Result.ok().message("保存成功");
-        } else {
-            return Result.error().message("保存失败");
-        }
+        boolean save = service.save(BeanConvert.toBean(param, IntegralGrade.class));
+        Assert.isTure(save, CommonException.build(BaseExceptionEnum.SAVE_FAILURE));
+        return Result.ok();
     }
 
     @ApiOperation("根据id获取积分等级")
@@ -69,24 +68,19 @@ public class AdminIntegralGradeController {
     public Result<?> getById(@RequestParam("id") Long id) {
 
         IntegralGrade integralGrade = service.getById(id);
-        if (ObjectUtil.isNotEmpty(integralGrade)) {
+        Assert.isNotNull(integralGrade, CommonException.build(BaseExceptionEnum.DATA_NOT_EXIST));
 
-            return Result.ok(integralGrade);
-        } else {
-            return Result.error().message("数据不存在");
-        }
+        return Result.ok(integralGrade);
     }
 
     @ApiOperation("更新积分等级")
     @PutMapping("/update")
-    public Result<?> update(@Valid @RequestBody IntegralGrade integralGrade) {
+    public Result<?> update(@Valid @RequestBody IntegralGradeParam param) {
 
-        boolean update = service.updateById(integralGrade);
-        if (update) {
-            return Result.ok().message("修改成功");
-        } else {
-            return Result.error().message("修改失败");
-        }
+        IntegralGrade grade = service.getById(param.getId());
+        Assert.isNotNull(grade, CommonException.build(BaseExceptionEnum.DATA_NOT_EXIST));
+        service.updateById(BeanConvert.toBean(param, IntegralGrade.class));
+        return Result.ok();
     }
 
 }

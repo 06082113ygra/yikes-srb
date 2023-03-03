@@ -22,20 +22,6 @@ public enum ResultCodeEnum implements ExceptionEnumFactory {
     SUCCESS(0, "成功"),
     ERROR(-1, "服务器内部错误"),
 
-    /**
-     * 登录超时，请重新登录
-     */
-    LOGIN_EXPIRE(HttpStatus.BAD_REQUEST.value(), "登录超时，请重新登录"),
-    /**
-     * 非法签名，请重新登录
-     */
-    AUTH_ILLEGAL(HttpStatus.BAD_REQUEST.value(), "非法签名，请重新登录"),
-    /**
-     * 服务内部错误
-     */
-    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR.value(), "服务内部错误"),
-
-
     //-1xx 服务器错误
     BAD_SQL_GRAMMAR_ERROR(-101, "sql语法错误"),
     SERVLET_ERROR(-102, "servlet请求异常"), //-2xx 参数校验
