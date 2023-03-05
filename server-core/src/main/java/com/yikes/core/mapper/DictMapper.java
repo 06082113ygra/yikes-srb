@@ -1,8 +1,12 @@
 package com.yikes.core.mapper;
 
+import com.yikes.core.pojo.dto.ExcelDictDTO;
 import com.yikes.core.pojo.entity.Dict;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,4 +19,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface DictMapper extends BaseMapper<Dict> {
 
+    // //批量插入
+    void insertBatch(List<ExcelDictDTO> list);
 }

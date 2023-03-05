@@ -27,6 +27,7 @@ public enum ResultCodeEnum implements ExceptionEnumFactory {
     SERVLET_ERROR(-102, "servlet请求异常"), //-2xx 参数校验
     UPLOAD_ERROR(-103, "文件上传错误"),
     EXPORT_DATA_ERROR(104, "数据导出失败"),
+    BATCH_IMPORT_SUCCEEDED(105, "批量导入成功"),
 
 
     //-2xx 参数校验

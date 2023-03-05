@@ -100,11 +100,8 @@ public class Result<T> {
         return this;
     }
 
-    public boolean isOk() {
-        if(this.getCode().intValue() == ResultCodeEnum.SUCCESS.getCode().intValue()) {
-            return true;
-        }
-        return false;
-    }
+//    public boolean isOk() {
+//        return this.getCode().intValue() == ResultCodeEnum.SUCCESS.getCode().intValue();
+//    }
 
 }

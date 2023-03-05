@@ -56,6 +56,11 @@
             <artifactId>xmlbeans</artifactId>
             <version>5.1.1</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.tomcat.embed</groupId>-->
+<!--            <artifactId>tomcat-embed-core</artifactId>-->
+<!--            <version>9.0.39</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 

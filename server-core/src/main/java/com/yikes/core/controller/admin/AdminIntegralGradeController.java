@@ -5,7 +5,7 @@ import com.yikes.common.exception.CommonException;
 import com.yikes.common.result.ResultCodeEnum;
 import com.yikes.common.utils.Assert;
 import com.yikes.common.result.Result;
-import com.yikes.common.utils.BeanConvert;
+import com.yikes.common.utils.BeanSuperUtil;
 import com.yikes.core.pojo.entity.IntegralGrade;
 import com.yikes.core.pojo.param.IntegralGradeParam;
 import com.yikes.core.pojo.vo.IntegralGradeVO;
@@ -39,8 +39,10 @@ public class AdminIntegralGradeController {
     @GetMapping("/list")
     public Result<List<IntegralGradeVO>> listAll(){
 
-        List<IntegralGradeVO> list = BeanConvert.toBeanList(service.list(), IntegralGradeVO.class);
-        return Result.build(list);
+        List<IntegralGrade> list = service.list();
+        List<IntegralGradeVO> beanList = BeanSuperUtil.convertList(list, IntegralGradeVO.class);
+
+        return Result.build(beanList);
     }
 
     @ApiOperation(value = "根据id删除积分等级", notes="逻辑删除")
@@ -58,7 +60,7 @@ public class AdminIntegralGradeController {
 
         Assert.notNull(param.getBorrowAmount(), ResultCodeEnum.BORROW_AMOUNT_NULL_ERROR);
 
-        boolean save = service.save(BeanConvert.toBean(param, IntegralGrade.class));
+        boolean save = service.save(BeanSuperUtil.convert(param, IntegralGrade.class));
         Assert.isTure(save, CommonException.build(BaseExceptionEnum.SAVE_FAILURE));
         return Result.ok();
     }
@@ -79,7 +81,7 @@ public class AdminIntegralGradeController {
 
         IntegralGrade grade = service.getById(param.getId());
         Assert.isNotNull(grade, CommonException.build(BaseExceptionEnum.DATA_NOT_EXIST));
-        service.updateById(BeanConvert.toBean(param, IntegralGrade.class));
+        service.updateById(BeanSuperUtil.convert(param, IntegralGrade.class));
         return Result.ok();
     }
 
