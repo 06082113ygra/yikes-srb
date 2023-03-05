@@ -170,24 +170,24 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
-        <!-- starter依赖 -->
+        <!--&lt;!&ndash; starter依赖 &ndash;&gt;
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter</artifactId>
         </dependency>
 
-        <!-- cloud 的config配置 -->
+        &lt;!&ndash; cloud 的config配置 &ndash;&gt;
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
 
-        <!-- gateway网关 -->
+        &lt;!&ndash; gateway网关 &ndash;&gt;
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-
+-->
         <!-- devtools 热部署工具 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
