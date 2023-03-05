@@ -1,6 +1,8 @@
 package com.yikes.core.service.impl;
 
 import com.alibaba.excel.EasyExcel;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.yikes.common.exception.CommonException;
 import com.yikes.common.result.Result;
 import com.yikes.common.result.ResultCodeEnum;
@@ -10,6 +12,7 @@ import com.yikes.core.listener.ExcelDictDTOListener;
 import com.yikes.core.pojo.dto.ExcelDictDTO;
 import com.yikes.core.pojo.entity.Dict;
 import com.yikes.core.mapper.DictMapper;
+import com.yikes.core.pojo.vo.DictVO;
 import com.yikes.core.service.DictService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +39,30 @@ import java.util.List;
 @Transactional(rollbackFor = {Exception.class})
 @Service
 public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements DictService {
+
+    @Override
+    public List<DictVO> listByParentId(Long parentId) {
+
+        List<Dict> list = this.list(new LambdaQueryWrapper<Dict>().eq(Dict::getParentId, parentId).eq(Dict::getIsDeleted, 0));
+        List<DictVO> dictVOList = BeanSuperUtil.convertList(list, DictVO.class);
+
+        for (DictVO dictVO : dictVOList) {
+
+            boolean hasChildren = this.hasChildren(dictVO.getParentId());
+            dictVO.setHasChildren(hasChildren);
+        }
+
+        return dictVOList;
+    }
+
+    private boolean hasChildren(Long parentId) {
+
+        long count = this.count(new LambdaQueryWrapper<Dict>().eq(Dict::getParentId, parentId).eq(Dict::getIsDeleted, 0));
+        if (count > 0) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public Result<CommonException> importData(MultipartFile file) {

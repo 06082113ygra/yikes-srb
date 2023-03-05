@@ -5,6 +5,7 @@ import com.yikes.common.result.Result;
 import com.yikes.core.pojo.dto.ExcelDictDTO;
 import com.yikes.core.pojo.entity.Dict;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yikes.core.pojo.vo.DictVO;
 import org.springframework.web.multipart.MultipartFile;
 import reactor.core.publisher.Mono;
 
@@ -22,6 +23,13 @@ import java.util.List;
 public interface DictService extends IService<Dict> {
 
     /**
+     * 根据上级id获取子节点数据列表
+     * @param parentId
+     * @return
+     */
+    List<DictVO> listByParentId(Long parentId);
+
+    /**
      * Excel批量导入数据字典
      * @param file
      * @return
@@ -33,4 +41,5 @@ public interface DictService extends IService<Dict> {
      * @param response
      */
     void export(HttpServletResponse response);
+
 }
