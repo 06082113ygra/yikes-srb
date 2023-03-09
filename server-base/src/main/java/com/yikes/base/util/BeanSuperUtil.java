@@ -1,9 +1,10 @@
-package com.yikes.common.convert;
+package com.yikes.base.util;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.google.common.collect.Lists;
-import com.yikes.common.result.PageInfo;
-import com.yikes.common.result.PageResult;
+import com.yikes.base.convert.IConvert;
+import com.yikes.base.page.PageResult;
+import com.yikes.base.page.PgInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -81,7 +82,7 @@ public class BeanSuperUtil extends BeanUtil {
     }
 
     public static <V> PageResult<V> convertPage(com.github.pagehelper.PageInfo<?> dataPage, Class<V> toClazz) {
-        PageInfo pageInfo = new PageInfo();
+        PgInfo pageInfo = new PgInfo();
         pageInfo.setPageSize(dataPage.getPageSize());
         pageInfo.setTotalCount(dataPage.getTotal());
         pageInfo.setCurrentPage(dataPage.getPageNum());
@@ -91,7 +92,7 @@ public class BeanSuperUtil extends BeanUtil {
     }
 
     public static <K, V> PageResult<V> convertPage(com.github.pagehelper.PageInfo<K> dataPage, Class<V> toClazz, IConvert<K, V> iConvert) {
-        PageInfo pageInfo = new PageInfo();
+        PgInfo pageInfo = new PgInfo();
         pageInfo.setPageSize(dataPage.getPageSize());
         pageInfo.setTotalCount(dataPage.getTotal());
         pageInfo.setCurrentPage(dataPage.getPageNum());

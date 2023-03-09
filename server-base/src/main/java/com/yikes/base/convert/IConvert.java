@@ -1,4 +1,4 @@
-package com.yikes.common.convert;
+package com.yikes.base.convert;
 
 /**
  * <pre>

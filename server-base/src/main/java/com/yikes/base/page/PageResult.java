@@ -1,4 +1,4 @@
-package com.yikes.common.result;
+package com.yikes.base.page;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,11 +14,11 @@ import java.util.List;
 public class PageResult<T> implements Serializable {
 
     private List<T> data;
-    private PageInfo pageInfo;
+    private PgInfo pgInfo;
 
-    public PageResult(List<T> data, PageInfo pageInfo) {
+    public PageResult(List<T> data, PgInfo pgInfo) {
         this.data = data;
-        this.pageInfo = pageInfo;
+        this.pgInfo = pgInfo;
     }
 
     public List<T> getData() {
@@ -29,19 +29,19 @@ public class PageResult<T> implements Serializable {
         this.data = data;
     }
 
-    public PageInfo getPageInfo() {
-        return pageInfo;
+    public PgInfo getPageInfo() {
+        return pgInfo;
     }
 
-    public void setPageInfo(PageInfo pageInfo) {
-        this.pageInfo = pageInfo;
+    public void setPageInfo(PgInfo pgInfo) {
+        this.pgInfo = pgInfo;
     }
 
     @Override
     public String toString() {
         return "PageResult{" +
                 "data=" + data +
-                ", pageInfo=" + pageInfo +
+                ", pageInfo=" + pgInfo +
                 '}';
     }
 }

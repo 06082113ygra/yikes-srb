@@ -2,10 +2,10 @@ package com.yikes.core.service.impl;
 
 import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.yikes.base.util.BeanSuperUtil;
 import com.yikes.common.exception.CommonException;
 import com.yikes.common.result.Result;
 import com.yikes.common.enums.ResultCodeEnum;
-import com.yikes.common.convert.BeanSuperUtil;
 import com.yikes.common.utils.ExcelUtils;
 import com.yikes.core.listener.ExcelDictDTOListener;
 import com.yikes.core.pojo.dto.ExcelDictDTO;

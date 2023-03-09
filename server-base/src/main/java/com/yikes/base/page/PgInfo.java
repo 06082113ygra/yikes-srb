@@ -1,4 +1,4 @@
-package com.yikes.common.result;
+package com.yikes.base.page;
 
 import java.io.Serializable;
 
@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author guanrong.yin
  * @date 2023/3/10 0:12
  */
-public class PageInfo implements Serializable {
+public class PgInfo implements Serializable {
 
     private Integer currentPage;
 
@@ -21,7 +21,7 @@ public class PageInfo implements Serializable {
     private Long totalCount;
 
 
-    public PageInfo() {}
+    public PgInfo() {}
 
     public Integer getCurrentPage() {
         return currentPage;

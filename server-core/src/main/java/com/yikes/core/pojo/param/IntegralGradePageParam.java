@@ -1,12 +1,12 @@
 package com.yikes.core.pojo.param;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.yikes.base.page.PageForm;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -22,11 +22,7 @@ import java.util.Date;
 @Setter
 @TableName("integral_grade")
 @ApiModel(value = "IntegralGrade对象", description = "积分等级表")
-public class IntegralGradeParam {
-
-
-    @ApiModelProperty("编号")
-    private Long id;
+public class IntegralGradePageParam extends PageForm {
 
     @ApiModelProperty("积分区间开始")
     private Integer integralStart;

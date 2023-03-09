@@ -1,13 +1,13 @@
 package com.yikes.core.controller.admin;
 
+import com.yikes.base.util.BeanSuperUtil;
 import com.yikes.common.enums.BaseExceptionEnum;
 import com.yikes.common.exception.CommonException;
 import com.yikes.common.enums.ResultCodeEnum;
 import com.yikes.common.utils.Assert;
 import com.yikes.common.result.Result;
-import com.yikes.common.convert.BeanSuperUtil;
 import com.yikes.core.pojo.entity.IntegralGrade;
-import com.yikes.core.pojo.param.IntegralGradeParam;
+import com.yikes.core.pojo.param.IntegralGradePageParam;
 import com.yikes.core.pojo.vo.IntegralGradeVO;
 import com.yikes.core.service.IntegralGradeService;
 import io.swagger.annotations.Api;
@@ -36,9 +36,9 @@ public class AdminIntegralGradeController {
 
     @ApiOperation("列表")
     @GetMapping("/list")
-    public Result<List<IntegralGradeVO>> listAll(){
+    public Result<List<IntegralGradeVO>> getPageAll(@Valid @RequestBody IntegralGradePageParam param){
 
-        List<IntegralGrade> list = service.list();
+        List<IntegralGrade> list = service.getPageAll(param);
         List<IntegralGradeVO> beanList = BeanSuperUtil.convertList(list, IntegralGradeVO.class);
 
         return Result.build(beanList);
@@ -55,7 +55,7 @@ public class AdminIntegralGradeController {
 
     @ApiOperation("新增")
     @PostMapping("/add")
-    public Result<?> add(@Valid @RequestBody IntegralGradeParam param) {
+    public Result<?> add(@Valid @RequestBody IntegralGradePageParam param) {
 
         Assert.notNull(param.getBorrowAmount(), ResultCodeEnum.BORROW_AMOUNT_NULL_ERROR);
 
@@ -76,7 +76,7 @@ public class AdminIntegralGradeController {
 
     @ApiOperation("更新积分等级")
     @PutMapping("/update")
-    public Result<?> update(@Valid @RequestBody IntegralGradeParam param) {
+    public Result<?> update(@Valid @RequestBody IntegralGradePageParam param) {
 
         IntegralGrade grade = service.getById(param.getId());
         Assert.isNotNull(grade, CommonException.build(BaseExceptionEnum.DATA_NOT_EXIST));
