@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
  *
  * @author guanrong.yin
  * @date 2023/3/1 22:10
- * @description: TODO
  */
 @SpringBootApplication
 @ComponentScan({"com.yikes"})

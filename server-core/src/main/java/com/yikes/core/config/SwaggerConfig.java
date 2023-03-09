@@ -21,7 +21,6 @@ import java.util.function.Predicate;
  *
  * @author guanrong.yin
  * @date 2023/3/1 23:54
- * @description: TODO
  */
 @EnableSwagger2
 @Configuration

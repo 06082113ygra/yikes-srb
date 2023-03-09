@@ -1,7 +1,9 @@
-package com.yikes.common.utils;
+package com.yikes.common.convert;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.google.common.collect.Lists;
+import com.yikes.common.result.PageInfo;
+import com.yikes.common.result.PageResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +17,6 @@ import java.util.List;
  *
  * @author guanrong.yin
  * @date 2023/3/5 17:34
- * @description: TODO
  */
 public class BeanSuperUtil extends BeanUtil {
 
@@ -36,8 +37,7 @@ public class BeanSuperUtil extends BeanUtil {
         }
     }
 
-
-    /*public static <K, V> V convert(K source, Class<V> toClazz, IConvert<K, V> iConvert) {
+    public static <K, V> V convert(K source, Class<V> toClazz, IConvert<K, V> iConvert) {
         if (source == null) {
             return null;
         } else {
@@ -54,7 +54,7 @@ public class BeanSuperUtil extends BeanUtil {
             }
             return null;
         }
-    }*/
+    }
 
     public static <V> List<V> convertList(List<?> list, Class<V> toClazz) {
         if (list == null) {
@@ -68,7 +68,7 @@ public class BeanSuperUtil extends BeanUtil {
         }
     }
 
-    /*public static <K, V> List<V> convertList(List<K> list, Class<V> toClazz, IConvert<K, V> iConvert) {
+    public static <K, V> List<V> convertList(List<K> list, Class<V> toClazz, IConvert<K, V> iConvert) {
         if (list == null) {
             return Lists.newArrayList();
         } else {
@@ -78,5 +78,25 @@ public class BeanSuperUtil extends BeanUtil {
             }
             return toList;
         }
-    }*/
+    }
+
+    public static <V> PageResult<V> convertPage(com.github.pagehelper.PageInfo<?> dataPage, Class<V> toClazz) {
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setPageSize(dataPage.getPageSize());
+        pageInfo.setTotalCount(dataPage.getTotal());
+        pageInfo.setCurrentPage(dataPage.getPageNum());
+        pageInfo.setTotalPage(dataPage.getPages());
+        List<V> list = convertList(dataPage.getList(), toClazz);
+        return new PageResult<>(list, pageInfo);
+    }
+
+    public static <K, V> PageResult<V> convertPage(com.github.pagehelper.PageInfo<K> dataPage, Class<V> toClazz, IConvert<K, V> iConvert) {
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setPageSize(dataPage.getPageSize());
+        pageInfo.setTotalCount(dataPage.getTotal());
+        pageInfo.setCurrentPage(dataPage.getPageNum());
+        pageInfo.setTotalPage(dataPage.getPages());
+        List<V> list = convertList(dataPage.getList(), toClazz, iConvert);
+        return new PageResult<>(list, pageInfo);
+    }
 }

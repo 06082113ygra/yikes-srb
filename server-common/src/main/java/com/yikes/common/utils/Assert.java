@@ -22,7 +22,6 @@ import java.util.function.Supplier;
  *
  * @author guanrong.yin
  * @date 2023/3/3 0:34
- * @description: TODO
  */
 @Slf4j
 public abstract class Assert {

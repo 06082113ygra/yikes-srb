@@ -5,7 +5,7 @@ import com.yikes.common.exception.CommonException;
 import com.yikes.common.result.ResultCodeEnum;
 import com.yikes.common.utils.Assert;
 import com.yikes.common.result.Result;
-import com.yikes.common.utils.BeanSuperUtil;
+import com.yikes.common.convert.BeanSuperUtil;
 import com.yikes.core.pojo.entity.IntegralGrade;
 import com.yikes.core.pojo.param.IntegralGradeParam;
 import com.yikes.core.pojo.vo.IntegralGradeVO;
@@ -25,7 +25,6 @@ import java.util.List;
  *
  * @author guanrong.yin
  * @date 2023/3/2 0:51
- * @description: TODO
  */
 @Api(tags = "积分等级管理")
 @RestController

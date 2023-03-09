@@ -10,12 +10,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * <pre>
- *
+ *  mybatis-plus分页设置
  * </pre>
  *
  * @author guanrong.yin
  * @date 2023/3/1 22:11
- * @description: TODO
  */
 @Configuration
 @MapperScan("com.yikes.core.mapper")
