@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author guanrong.yin
  * @date 2023/3/10 0:12
  */
-public class PgInfo implements Serializable {
+public class PageInfo implements Serializable {
 
     private Integer currentPage;
 
@@ -21,7 +21,7 @@ public class PgInfo implements Serializable {
     private Long totalCount;
 
 
-    public PgInfo() {}
+    public PageInfo() {}
 
     public Integer getCurrentPage() {
         return currentPage;

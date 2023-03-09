@@ -1,8 +1,10 @@
 package com.yikes.core.service;
 
+import com.yikes.base.page.PageResult;
 import com.yikes.core.pojo.entity.IntegralGrade;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yikes.core.pojo.param.IntegralGradePageParam;
+import com.yikes.core.pojo.vo.IntegralGradeVO;
 
 import java.util.List;
 
@@ -21,5 +23,5 @@ public interface IntegralGradeService extends IService<IntegralGrade> {
      * @param param
      * @return
      */
-    List<IntegralGrade> getPageAll(IntegralGradePageParam param);
+    PageResult<IntegralGradeVO> getPageAll(IntegralGradePageParam param);
 }

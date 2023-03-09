@@ -1,5 +1,6 @@
 package com.yikes.core.controller.admin;
 
+import com.yikes.base.page.PageResult;
 import com.yikes.base.util.BeanSuperUtil;
 import com.yikes.common.enums.BaseExceptionEnum;
 import com.yikes.common.exception.CommonException;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * <pre>
@@ -36,12 +36,11 @@ public class AdminIntegralGradeController {
 
     @ApiOperation("列表")
     @GetMapping("/list")
-    public Result<List<IntegralGradeVO>> getPageAll(@Valid @RequestBody IntegralGradePageParam param){
+    public Result<PageResult<IntegralGradeVO>> getPageAll(@Valid @RequestBody IntegralGradePageParam param){
 
-        List<IntegralGrade> list = service.getPageAll(param);
-        List<IntegralGradeVO> beanList = BeanSuperUtil.convertList(list, IntegralGradeVO.class);
+        PageResult<IntegralGradeVO> pageAll = service.getPageAll(param);
 
-        return Result.build(beanList);
+        return Result.build(pageAll);
     }
 
     @ApiOperation(value = "根据id删除积分等级", notes="逻辑删除")

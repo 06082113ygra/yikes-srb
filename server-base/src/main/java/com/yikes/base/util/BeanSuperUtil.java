@@ -4,7 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.google.common.collect.Lists;
 import com.yikes.base.convert.IConvert;
 import com.yikes.base.page.PageResult;
-import com.yikes.base.page.PgInfo;
+import com.yikes.base.page.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,8 +21,11 @@ import java.util.List;
  */
 public class BeanSuperUtil extends BeanUtil {
 
-    private static Logger logger = LoggerFactory.getLogger(BeanSuperUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(BeanSuperUtil.class);
 
+    /**
+     * 复制对象
+     */
     public static <V> V convert(Object source, Class<V> toClazz) {
         if (source == null) {
             return null;
@@ -57,6 +60,9 @@ public class BeanSuperUtil extends BeanUtil {
         }
     }
 
+    /**
+     * 复制list
+     */
     public static <V> List<V> convertList(List<?> list, Class<V> toClazz) {
         if (list == null) {
             return Lists.newArrayList();
@@ -81,8 +87,12 @@ public class BeanSuperUtil extends BeanUtil {
         }
     }
 
+
+    /**
+     * 复制分页
+     */
     public static <V> PageResult<V> convertPage(com.github.pagehelper.PageInfo<?> dataPage, Class<V> toClazz) {
-        PgInfo pageInfo = new PgInfo();
+        PageInfo pageInfo = new PageInfo();
         pageInfo.setPageSize(dataPage.getPageSize());
         pageInfo.setTotalCount(dataPage.getTotal());
         pageInfo.setCurrentPage(dataPage.getPageNum());
@@ -92,7 +102,7 @@ public class BeanSuperUtil extends BeanUtil {
     }
 
     public static <K, V> PageResult<V> convertPage(com.github.pagehelper.PageInfo<K> dataPage, Class<V> toClazz, IConvert<K, V> iConvert) {
-        PgInfo pageInfo = new PgInfo();
+        PageInfo pageInfo = new PageInfo();
         pageInfo.setPageSize(dataPage.getPageSize());
         pageInfo.setTotalCount(dataPage.getTotal());
         pageInfo.setCurrentPage(dataPage.getPageNum());

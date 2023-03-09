@@ -1,11 +1,14 @@
 package com.yikes.core.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.yikes.base.page.PageResult;
+import com.yikes.base.util.BeanSuperUtil;
 import com.yikes.core.pojo.entity.IntegralGrade;
 import com.yikes.core.mapper.IntegralGradeMapper;
 import com.yikes.core.pojo.param.IntegralGradePageParam;
+import com.yikes.core.pojo.vo.IntegralGradeVO;
 import com.yikes.core.service.IntegralGradeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -24,15 +27,18 @@ import java.util.List;
 public class IntegralGradeServiceImpl extends ServiceImpl<IntegralGradeMapper, IntegralGrade> implements IntegralGradeService {
 
     @Override
-    public List<IntegralGrade> getPageAll(IntegralGradePageParam param) {
+    public PageResult<IntegralGradeVO> getPageAll(IntegralGradePageParam param) {
 
         PageHelper.startPage(param.getpn(), param.getps());
-        lambdaQuery().eq(ObjectUtil.isNotNull(param.getIntegralStart()), IntegralGrade::getIntegralStart, param.getIntegralStart())
+        List<IntegralGrade> list = lambdaQuery().eq(ObjectUtil.isNotNull(param.getIntegralStart()), IntegralGrade::getIntegralStart, param.getIntegralStart())
                 .eq(ObjectUtil.isNotNull(param.getIntegralEnd()), IntegralGrade::getIntegralEnd, param.getIntegralEnd())
                 .ge(ObjectUtil.isNotNull(param.getCreateTime()), IntegralGrade::getCreateTime, param.getCreateTime())
                 .le(ObjectUtil.isNotNull(param.getUpdateTime()), IntegralGrade::getUpdateTime, param.getUpdateTime())
                 .list();
 
-        return null;
+        PageInfo<IntegralGrade> pageInfo = new PageInfo<>(list);
+        PageResult<IntegralGradeVO> pageResult = BeanSuperUtil.convertPage(pageInfo, IntegralGradeVO.class);
+
+        return pageResult;
     }
 }

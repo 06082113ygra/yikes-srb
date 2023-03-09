@@ -14,11 +14,11 @@ import java.util.List;
 public class PageResult<T> implements Serializable {
 
     private List<T> data;
-    private PgInfo pgInfo;
+    private PageInfo pageInfo;
 
-    public PageResult(List<T> data, PgInfo pgInfo) {
+    public PageResult(List<T> data, PageInfo pageInfo) {
         this.data = data;
-        this.pgInfo = pgInfo;
+        this.pageInfo = pageInfo;
     }
 
     public List<T> getData() {
@@ -29,19 +29,19 @@ public class PageResult<T> implements Serializable {
         this.data = data;
     }
 
-    public PgInfo getPageInfo() {
-        return pgInfo;
+    public PageInfo getPageInfo() {
+        return pageInfo;
     }
 
-    public void setPageInfo(PgInfo pgInfo) {
-        this.pgInfo = pgInfo;
+    public void setPageInfo(PageInfo pageInfo) {
+        this.pageInfo = pageInfo;
     }
 
     @Override
     public String toString() {
         return "PageResult{" +
                 "data=" + data +
-                ", pageInfo=" + pgInfo +
+                ", pageInfo=" + pageInfo +
                 '}';
     }
 }
