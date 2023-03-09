@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * <p>
@@ -20,7 +19,7 @@ import java.util.Date;
 @Data
 @ToString
 @ApiModel(value = "IntegralGrade对象", description = "积分等级表")
-public class IntegralGradePageParam extends PageForm {
+public class IntegralGradeEditParam extends PageForm {
 
     @ApiModelProperty("id")
     private Long id;
@@ -33,12 +32,6 @@ public class IntegralGradePageParam extends PageForm {
 
     @ApiModelProperty("借款额度")
     private BigDecimal borrowAmount;
-
-    @ApiModelProperty("创建时间")
-    private Date createTime;
-
-    @ApiModelProperty("更新时间")
-    private Date updateTime;
 
 
 }

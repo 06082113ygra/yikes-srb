@@ -24,9 +24,9 @@ import java.util.function.Supplier;
  * @date 2023/3/3 0:34
  */
 @Slf4j
-public abstract class Assert {
+public abstract class As {
 
-    private Assert() {
+    private As() {
     }
 
     /**

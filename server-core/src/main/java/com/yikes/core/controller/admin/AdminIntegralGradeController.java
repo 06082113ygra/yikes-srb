@@ -5,9 +5,11 @@ import com.yikes.base.util.BeanSuperUtil;
 import com.yikes.common.enums.BaseExceptionEnum;
 import com.yikes.common.exception.CommonException;
 import com.yikes.common.enums.ResultCodeEnum;
-import com.yikes.common.utils.Assert;
+import com.yikes.common.utils.As;
 import com.yikes.common.result.Result;
 import com.yikes.core.pojo.entity.IntegralGrade;
+import com.yikes.core.pojo.param.IntegralGradeAddParam;
+import com.yikes.core.pojo.param.IntegralGradeEditParam;
 import com.yikes.core.pojo.param.IntegralGradePageParam;
 import com.yikes.core.pojo.vo.IntegralGradeVO;
 import com.yikes.core.service.IntegralGradeService;
@@ -34,53 +36,45 @@ public class AdminIntegralGradeController {
     @Resource
     private IntegralGradeService service;
 
-    @ApiOperation("列表")
-    @GetMapping("/list")
+    @ApiOperation("分页-列表")
+    @GetMapping("/pageList")
     public Result<PageResult<IntegralGradeVO>> getPageAll(@Valid @RequestBody IntegralGradePageParam param){
 
         PageResult<IntegralGradeVO> pageAll = service.getPageAll(param);
-
         return Result.build(pageAll);
     }
 
-    @ApiOperation(value = "根据id删除积分等级", notes="逻辑删除")
+
+    @ApiOperation(value = "根据id删除积分等级")
     @DeleteMapping("/remove")
-    public Result<?> remove(@RequestParam("id") Long id) {
+    protected Result<Void> remove(@RequestParam("id") Long id) {
 
         boolean remove = service.removeById(id);
-        Assert.isTure(remove, CommonException.build(BaseExceptionEnum.DELETION_FAILURE));
+        As.isTure(remove, CommonException.build(BaseExceptionEnum.DELETION_FAILURE));
         return Result.ok();
     }
 
     @ApiOperation("新增")
     @PostMapping("/add")
-    public Result<?> add(@Valid @RequestBody IntegralGradePageParam param) {
+    public Result<Void> add(@Valid @RequestBody IntegralGradeAddParam param) {
 
-        Assert.notNull(param.getBorrowAmount(), ResultCodeEnum.BORROW_AMOUNT_NULL_ERROR);
+        service.add(param);
+        return Result.ok();
+    }
 
-        boolean save = service.save(BeanSuperUtil.convert(param, IntegralGrade.class));
-        Assert.isTure(save, CommonException.build(BaseExceptionEnum.SAVE_FAILURE));
+    @ApiOperation("编辑积分等级")
+    @PutMapping("/update")
+    public Result<Void> edit(@Valid @RequestBody IntegralGradeEditParam param) {
+
+        service.edit(param);
         return Result.ok();
     }
 
     @ApiOperation("根据id获取积分等级")
     @GetMapping("/get")
-    public Result<?> getById(@RequestParam("id") Long id) {
+    public Result<IntegralGradeVO> get(@RequestParam("id") Long id) {
 
-        IntegralGrade integralGrade = service.getById(id);
-        Assert.isNotNull(integralGrade, CommonException.build(BaseExceptionEnum.DATA_NOT_EXIST));
-
-        return Result.ok(integralGrade);
-    }
-
-    @ApiOperation("更新积分等级")
-    @PutMapping("/update")
-    public Result<?> update(@Valid @RequestBody IntegralGradePageParam param) {
-
-        IntegralGrade grade = service.getById(param.getId());
-        Assert.isNotNull(grade, CommonException.build(BaseExceptionEnum.DATA_NOT_EXIST));
-        service.updateById(BeanSuperUtil.convert(param, IntegralGrade.class));
-        return Result.ok();
+        return Result.ok(service.get(id));
     }
 
 }
