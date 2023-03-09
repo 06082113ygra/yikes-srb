@@ -1,12 +1,7 @@
 package com.yikes.core.pojo.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.util.Date;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -24,13 +19,7 @@ import lombok.Setter;
 @Setter
 @TableName("user_info")
 @ApiModel(value = "UserInfo对象", description = "用户基本信息")
-public class UserInfo implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @ApiModelProperty("编号")
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+public class UserInfo extends BaseEntity {
 
     @ApiModelProperty("1：出借人 2：借款人")
     @TableField("user_type")
@@ -87,19 +76,6 @@ public class UserInfo implements Serializable {
     @ApiModelProperty("状态（0：锁定 1：正常）")
     @TableField("status")
     private Integer status;
-
-    @ApiModelProperty("创建时间")
-    @TableField("create_time")
-    private Date createTime;
-
-    @ApiModelProperty("更新时间")
-    @TableField("update_time")
-    private Date updateTime;
-
-    @ApiModelProperty("逻辑删除(1:已删除，0:未删除)")
-    @TableField("is_deleted")
-    @TableLogic
-    private Boolean isDeleted;
 
 
 }

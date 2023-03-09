@@ -1,12 +1,7 @@
 package com.yikes.core.pojo.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.util.Date;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -24,13 +19,7 @@ import lombok.Setter;
 @Setter
 @TableName("borrower_attach")
 @ApiModel(value = "BorrowerAttach对象", description = "借款人上传资源表")
-public class BorrowerAttach implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @ApiModelProperty("编号")
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+public class BorrowerAttach extends BaseEntity {
 
     @ApiModelProperty("借款人id")
     @TableField("borrower_id")
@@ -47,19 +36,5 @@ public class BorrowerAttach implements Serializable {
     @ApiModelProperty("图片名称")
     @TableField("image_name")
     private String imageName;
-
-    @ApiModelProperty("创建时间")
-    @TableField("create_time")
-    private Date createTime;
-
-    @ApiModelProperty("更新时间")
-    @TableField("update_time")
-    private Date updateTime;
-
-    @ApiModelProperty("逻辑删除(1:已删除，0:未删除)")
-    @TableField("is_deleted")
-    @TableLogic
-    private Boolean isDeleted;
-
 
 }

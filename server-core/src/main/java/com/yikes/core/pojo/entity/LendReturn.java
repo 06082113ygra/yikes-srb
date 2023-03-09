@@ -1,11 +1,7 @@
 package com.yikes.core.pojo.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.ApiModel;
@@ -25,13 +21,7 @@ import lombok.Setter;
 @Setter
 @TableName("lend_return")
 @ApiModel(value = "LendReturn对象", description = "还款记录表")
-public class LendReturn implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @ApiModelProperty("编号")
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+public class LendReturn extends BaseEntity {
 
     @ApiModelProperty("标的id")
     @TableField("lend_id")
@@ -108,19 +98,6 @@ public class LendReturn implements Serializable {
     @ApiModelProperty("状态（0-未归还 1-已归还）")
     @TableField("status")
     private Integer status;
-
-    @ApiModelProperty("创建时间")
-    @TableField("create_time")
-    private Date createTime;
-
-    @ApiModelProperty("更新时间")
-    @TableField("update_time")
-    private Date updateTime;
-
-    @ApiModelProperty("逻辑删除(1:已删除，0:未删除)")
-    @TableField("is_deleted")
-    @TableLogic
-    private Boolean isDeleted;
 
 
 }
