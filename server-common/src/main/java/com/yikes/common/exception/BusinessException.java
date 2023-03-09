@@ -1,6 +1,6 @@
 package com.yikes.common.exception;
 
-import com.yikes.common.result.ResultCodeEnum;
+import com.yikes.common.enums.ResultCodeEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

@@ -5,7 +5,7 @@ import com.yikes.common.enums.ExceptionEnumFactory;
 import com.yikes.common.exception.BusinessException;
 import com.yikes.common.exception.CommonException;
 import com.yikes.common.result.Result;
-import com.yikes.common.result.ResultCodeEnum;
+import com.yikes.common.enums.ResultCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;

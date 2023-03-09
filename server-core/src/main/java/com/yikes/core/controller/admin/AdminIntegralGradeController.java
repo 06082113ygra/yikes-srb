@@ -2,7 +2,7 @@ package com.yikes.core.controller.admin;
 
 import com.yikes.common.enums.BaseExceptionEnum;
 import com.yikes.common.exception.CommonException;
-import com.yikes.common.result.ResultCodeEnum;
+import com.yikes.common.enums.ResultCodeEnum;
 import com.yikes.common.utils.Assert;
 import com.yikes.common.result.Result;
 import com.yikes.common.convert.BeanSuperUtil;

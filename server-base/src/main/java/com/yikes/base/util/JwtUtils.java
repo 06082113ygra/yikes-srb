@@ -1,7 +1,7 @@
 package com.yikes.base.util;
 
 import com.yikes.common.exception.BusinessException;
-import com.yikes.common.result.ResultCodeEnum;
+import com.yikes.common.enums.ResultCodeEnum;
 import io.jsonwebtoken.*;
 import org.springframework.util.StringUtils;
 

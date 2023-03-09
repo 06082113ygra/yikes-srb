@@ -3,7 +3,6 @@ package com.yikes.common.utils;
 import cn.hutool.core.util.ClassUtil;
 import com.yikes.common.enums.BaseExceptionEnum;
 import com.yikes.common.exception.CommonException;
-import com.yikes.common.result.ResultCodeEnum;
 import org.springframework.util.CollectionUtils;
 
 import java.lang.annotation.Annotation;
