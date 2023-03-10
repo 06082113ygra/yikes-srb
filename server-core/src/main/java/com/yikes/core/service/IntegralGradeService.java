@@ -3,12 +3,10 @@ package com.yikes.core.service;
 import com.yikes.base.page.PageResult;
 import com.yikes.core.pojo.entity.IntegralGrade;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yikes.core.pojo.param.IntegralGradeAddParam;
-import com.yikes.core.pojo.param.IntegralGradeEditParam;
-import com.yikes.core.pojo.param.IntegralGradePageParam;
+import com.yikes.core.pojo.req.IntegralGradeAddReq;
+import com.yikes.core.pojo.req.IntegralGradeEditReq;
+import com.yikes.core.pojo.req.IntegralGradePageReq;
 import com.yikes.core.pojo.vo.IntegralGradeVO;
-
-import java.util.List;
 
 /**
  * <p>
@@ -25,7 +23,7 @@ public interface IntegralGradeService extends IService<IntegralGrade> {
      * @param param
      * @return
      */
-    PageResult<IntegralGradeVO> getPageAll(IntegralGradePageParam param);
+    PageResult<IntegralGradeVO> getPageAll(IntegralGradePageReq param);
 
     /**
      * 根据 id 查询单条数据
@@ -38,11 +36,11 @@ public interface IntegralGradeService extends IService<IntegralGrade> {
      * 新增
      * @param param
      */
-    void add(IntegralGradeAddParam param);
+    void add(IntegralGradeAddReq param);
 
     /**
      * 编辑
      * @param param
      */
-    void edit(IntegralGradeEditParam param);
+    void edit(IntegralGradeEditReq param);
 }

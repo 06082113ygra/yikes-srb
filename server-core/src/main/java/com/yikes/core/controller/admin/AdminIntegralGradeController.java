@@ -1,16 +1,13 @@
 package com.yikes.core.controller.admin;
 
 import com.yikes.base.page.PageResult;
-import com.yikes.base.util.BeanSuperUtil;
 import com.yikes.common.enums.BaseExceptionEnum;
 import com.yikes.common.exception.CommonException;
-import com.yikes.common.enums.ResultCodeEnum;
 import com.yikes.common.utils.As;
 import com.yikes.common.result.Result;
-import com.yikes.core.pojo.entity.IntegralGrade;
-import com.yikes.core.pojo.param.IntegralGradeAddParam;
-import com.yikes.core.pojo.param.IntegralGradeEditParam;
-import com.yikes.core.pojo.param.IntegralGradePageParam;
+import com.yikes.core.pojo.req.IntegralGradeAddReq;
+import com.yikes.core.pojo.req.IntegralGradeEditReq;
+import com.yikes.core.pojo.req.IntegralGradePageReq;
 import com.yikes.core.pojo.vo.IntegralGradeVO;
 import com.yikes.core.service.IntegralGradeService;
 import io.swagger.annotations.Api;
@@ -30,17 +27,17 @@ import javax.validation.Valid;
  */
 @Api(tags = "积分等级管理")
 @RestController
-@RequestMapping("/admin/core/integral_grade")
+@RequestMapping("/core/integral_grade/admin")
 public class AdminIntegralGradeController {
 
     @Resource
     private IntegralGradeService service;
 
     @ApiOperation("分页-列表")
-    @GetMapping("/pageList")
-    public Result<PageResult<IntegralGradeVO>> getPageAll(@Valid @RequestBody IntegralGradePageParam param){
+    @PostMapping("/pageList")
+    public Result<PageResult<IntegralGradeVO>> getPageAll(@Valid @RequestBody IntegralGradePageReq req){
 
-        PageResult<IntegralGradeVO> pageAll = service.getPageAll(param);
+        PageResult<IntegralGradeVO> pageAll = service.getPageAll(req);
         return Result.build(pageAll);
     }
 
@@ -56,17 +53,17 @@ public class AdminIntegralGradeController {
 
     @ApiOperation("新增")
     @PostMapping("/add")
-    public Result<Void> add(@Valid @RequestBody IntegralGradeAddParam param) {
+    public Result<Void> add(@Valid @RequestBody IntegralGradeAddReq req) {
 
-        service.add(param);
+        service.add(req);
         return Result.ok();
     }
 
     @ApiOperation("编辑积分等级")
-    @PutMapping("/update")
-    public Result<Void> edit(@Valid @RequestBody IntegralGradeEditParam param) {
+    @PutMapping("/edit")
+    public Result<Void> edit(@Valid @RequestBody IntegralGradeEditReq req) {
 
-        service.edit(param);
+        service.edit(req);
         return Result.ok();
     }
 

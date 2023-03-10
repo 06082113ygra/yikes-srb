@@ -1,4 +1,4 @@
-package com.yikes.core.pojo.param;
+package com.yikes.core.pojo.req;
 
 import com.yikes.base.page.PageForm;
 import io.swagger.annotations.ApiModel;
@@ -19,7 +19,10 @@ import java.math.BigDecimal;
 @Data
 @ToString
 @ApiModel(value = "IntegralGrade对象", description = "积分等级表")
-public class IntegralGradeAddParam extends PageForm {
+public class IntegralGradeEditReq extends PageForm {
+
+    @ApiModelProperty("id")
+    private Long id;
 
     @ApiModelProperty("积分区间开始")
     private Integer integralStart;

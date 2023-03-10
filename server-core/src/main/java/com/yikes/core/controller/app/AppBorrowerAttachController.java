@@ -1,4 +1,4 @@
-package com.yikes.core.controller;
+package com.yikes.core.controller.app;
 
 
 import com.yikes.core.service.BorrowerAttachService;
@@ -20,8 +20,8 @@ import javax.annotation.Resource;
  */
 @Api(tags = "借款人上传资源")
 @RestController
-@RequestMapping("/core/borrower_attach")
-public class BorrowerAttachController {
+@RequestMapping("/core/borrower_attach/app")
+public class AppBorrowerAttachController {
 
     @Resource
     private BorrowerAttachService service;

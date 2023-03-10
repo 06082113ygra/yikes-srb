@@ -27,7 +27,7 @@ import java.util.List;
 @Slf4j
 @Api(tags = "数据字典")
 @RestController
-@RequestMapping("/core/dict")
+@RequestMapping("/core/dict/admin")
 public class AdminDictController {
 
     @Resource

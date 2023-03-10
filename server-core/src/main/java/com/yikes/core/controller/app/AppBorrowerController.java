@@ -1,28 +1,27 @@
-package com.yikes.core.controller;
+package com.yikes.core.controller.app;
 
 
-import com.yikes.core.service.TransFlowService;
+import com.yikes.core.service.BorrowerService;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
 /**
  * <p>
- * 交易流水表 前端控制器
+ * 借款人 前端控制器
  * </p>
  *
  * @author yikes
  * @since 2023-03-01
  */
-@Api(tags = "交易流水")
+@Api(tags = "借款人")
 @RestController
-@RequestMapping("/core/trans_flow")
-public class TransFlowController {
+@RequestMapping("/core/borrower/app")
+public class AppBorrowerController {
 
     @Resource
-    private TransFlowService service;
+    private BorrowerService service;
 
 }

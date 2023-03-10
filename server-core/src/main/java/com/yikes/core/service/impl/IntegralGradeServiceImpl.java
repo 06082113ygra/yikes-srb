@@ -11,9 +11,9 @@ import com.yikes.common.exception.CommonException;
 import com.yikes.common.utils.As;
 import com.yikes.core.pojo.entity.IntegralGrade;
 import com.yikes.core.mapper.IntegralGradeMapper;
-import com.yikes.core.pojo.param.IntegralGradeAddParam;
-import com.yikes.core.pojo.param.IntegralGradeEditParam;
-import com.yikes.core.pojo.param.IntegralGradePageParam;
+import com.yikes.core.pojo.req.IntegralGradeAddReq;
+import com.yikes.core.pojo.req.IntegralGradeEditReq;
+import com.yikes.core.pojo.req.IntegralGradePageReq;
 import com.yikes.core.pojo.vo.IntegralGradeVO;
 import com.yikes.core.service.IntegralGradeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -33,7 +33,7 @@ import java.util.List;
 public class IntegralGradeServiceImpl extends ServiceImpl<IntegralGradeMapper, IntegralGrade> implements IntegralGradeService {
 
     @Override
-    public PageResult<IntegralGradeVO> getPageAll(IntegralGradePageParam param) {
+    public PageResult<IntegralGradeVO> getPageAll(IntegralGradePageReq param) {
 
         PageHelper.startPage(param.getpn(), param.getps());
         List<IntegralGrade> list = lambdaQuery()
@@ -51,14 +51,14 @@ public class IntegralGradeServiceImpl extends ServiceImpl<IntegralGradeMapper, I
     }
 
     @Override
-    public void add(IntegralGradeAddParam param) {
+    public void add(IntegralGradeAddReq param) {
 
         As.notNull(param.getBorrowAmount(), ResultCodeEnum.BORROW_AMOUNT_NULL_ERROR);
         save(BeanSuperUtil.convert(param, IntegralGrade.class));
     }
 
     @Override
-    public void edit(IntegralGradeEditParam param) {
+    public void edit(IntegralGradeEditReq param) {
 
         IntegralGrade grade = getById(param.getId());
         As.isNotNull(grade, CommonException.build(BaseExceptionEnum.DATA_NOT_EXIST));

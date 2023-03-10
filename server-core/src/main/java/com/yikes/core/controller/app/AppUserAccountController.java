@@ -1,9 +1,8 @@
-package com.yikes.core.controller;
+package com.yikes.core.controller.app;
 
 
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api(tags = "用户账户")
 @RestController
-@RequestMapping("/core/user_account")
-public class UserAccountController {
+@RequestMapping("/core/user_account/app")
+public class AppUserAccountController {
 
 }

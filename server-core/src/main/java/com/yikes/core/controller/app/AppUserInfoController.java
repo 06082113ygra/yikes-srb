@@ -1,26 +1,26 @@
-package com.yikes.core.controller;
+package com.yikes.core.controller.app;
 
 
-import com.yikes.core.service.UserLoginRecordService;
+import com.yikes.core.service.UserInfoService;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
 /**
  * <p>
- * 用户登录记录表 前端控制器
+ * 用户基本信息 前端控制器
  * </p>
  *
  * @author yikes
  * @since 2023-03-01
  */
 @RestController
-@RequestMapping("/core/user_login_record")
-public class UserLoginRecordController {
+@RequestMapping("/core/user_info/app")
+public class AppUserInfoController {
 
     @Resource
-    private UserLoginRecordService service;
+    private UserInfoService service;
+
 
 }
