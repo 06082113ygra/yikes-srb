@@ -1,16 +1,17 @@
 package com.yikes.core.service;
 
-import com.yikes.core.pojo.entity.TransFlow;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yikes.core.pojo.entity.TransFlow;
+
 
 /**
- * <p>
- * 交易流水表 服务类
- * </p>
+ * 交易流水表
  *
- * @author yikes
- * @since 2023-03-01
+ * @author guanrong.yin
+ * @email yikes_ygr@163.com
+ * @date 2023-03-12 02:28:15
  */
 public interface TransFlowService extends IService<TransFlow> {
 
 }
+

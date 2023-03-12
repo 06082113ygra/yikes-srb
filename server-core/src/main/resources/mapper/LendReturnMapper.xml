@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.yikes.core.mapper.LendReturnMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yikes.core.pojo.entity.LendReturn" id="lendReturnMap">
+        <result property="id" column="id"/>
+        <result property="lendId" column="lend_id"/>
+        <result property="borrowInfoId" column="borrow_info_id"/>
+        <result property="returnNo" column="return_no"/>
+        <result property="userId" column="user_id"/>
+        <result property="amount" column="amount"/>
+        <result property="baseAmount" column="base_amount"/>
+        <result property="currentPeriod" column="current_period"/>
+        <result property="lendYearRate" column="lend_year_rate"/>
+        <result property="returnMethod" column="return_method"/>
+        <result property="principal" column="principal"/>
+        <result property="interest" column="interest"/>
+        <result property="total" column="total"/>
+        <result property="fee" column="fee"/>
+        <result property="returnDate" column="return_date"/>
+        <result property="realReturnTime" column="real_return_time"/>
+        <result property="isOverdue" column="is_overdue"/>
+        <result property="overdueTotal" column="overdue_total"/>
+        <result property="isLast" column="is_last"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="isDeleted" column="is_deleted"/>
+    </resultMap>
+
 
 </mapper>

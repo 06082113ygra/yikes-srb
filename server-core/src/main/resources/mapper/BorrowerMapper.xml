@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.yikes.core.mapper.BorrowerMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yikes.core.pojo.entity.Borrower" id="borrowerMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="name" column="name"/>
+        <result property="idCard" column="id_card"/>
+        <result property="mobile" column="mobile"/>
+        <result property="sex" column="sex"/>
+        <result property="age" column="age"/>
+        <result property="education" column="education"/>
+        <result property="isMarry" column="is_marry"/>
+        <result property="industry" column="industry"/>
+        <result property="income" column="income"/>
+        <result property="returnSource" column="return_source"/>
+        <result property="contactsName" column="contacts_name"/>
+        <result property="contactsMobile" column="contacts_mobile"/>
+        <result property="contactsRelation" column="contacts_relation"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="isDeleted" column="is_deleted"/>
+    </resultMap>
+
 
 </mapper>

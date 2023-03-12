@@ -1,66 +1,74 @@
 package com.yikes.core.controller.admin;
 
-
 import com.yikes.common.result.Result;
-import com.yikes.core.pojo.entity.UserAccount;
-import com.yikes.core.service.UserAccountService;
+import com.yikes.core.model.req.UserAccountAddReq;
+import com.yikes.core.model.req.UserAccountEditReq;
+import com.yikes.core.model.req.UserAccountPageReq;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import com.yikes.core.service.UserAccountService;
+
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
+
 /**
- * <p>
- * 用户账户 前端控制器
- * </p>
+ * 用户账户
  *
- * @author yikes
- * @since 2023-03-01
+ * @author guanrong.yin
+ * @email yikes_ygr@163.com
+ * @date 2023-03-12 02:28:15
  */
 @Api(tags = "用户账户")
 @RestController
-@RequestMapping("/core/user_account/admin")
+@RequestMapping("/admin/core/useraccount")
 public class AdminUserAccountController {
 
     @Resource
     private UserAccountService service;
 
-
-    @ApiOperation("分页-列表")
-    @PostMapping("/pageList")
-    public Result<?> pageList(@Valid @RequestBody UserAccountPageReq req) {
-
-        return Result.build();
-    }
-
-    @ApiOperation(value = "根据id删除积分等级")
-    @DeleteMapping("/remove")
-    protected Result<?> remove(@RequestParam("id") Long id) {
+    /**
+     * 分页
+     */
+    @ApiOperation("分页")
+    @PostMapping("/pageInfo")
+    public Result<?> pageInfo(@Valid @RequestBody UserAccountPageReq req){
 
         return Result.ok();
     }
+
+
+    @ApiOperation("信息")
+    @GetMapping("/get")
+    public Result<?> get(@RequestParam("id") Long id){
+
+        return Result.ok();
+    }
+
 
     @ApiOperation("新增")
     @PostMapping("/add")
-    public Result<?> add(@Valid @RequestBody UserAccountAddReq req) {
+    public Result<?> add(@Valid @RequestBody UserAccountAddReq req){
 
         return Result.ok();
     }
 
-    @ApiOperation("编辑积分等级")
+
+    @ApiOperation("编辑")
     @PutMapping("/edit")
-    public Result<?> edit(@Valid @RequestBody UserAccountEditReq req) {
+    public Result<?> edit(@Valid @RequestBody UserAccountEditReq req){
 
         return Result.ok();
     }
 
-    @ApiOperation("根据id获取积分等级")
-    @GetMapping("/get")
-    protected Result<?> get(@RequestParam("id") Long id) {
 
-        return Result.build();
+    @ApiOperation("删除")
+    @DeleteMapping("/remove")
+    public Result<?> remove(@RequestParam("id") Long id){
+
+        return Result.ok();
     }
 
 }

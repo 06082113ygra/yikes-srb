@@ -1,16 +1,17 @@
 package com.yikes.core.service;
 
-import com.yikes.core.pojo.entity.UserInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yikes.core.pojo.entity.UserInfo;
+
 
 /**
- * <p>
- * 用户基本信息 服务类
- * </p>
+ * 用户基本信息
  *
- * @author yikes
- * @since 2023-03-01
+ * @author guanrong.yin
+ * @email yikes_ygr@163.com
+ * @date 2023-03-12 02:28:15
  */
 public interface UserInfoService extends IService<UserInfo> {
 
 }
+

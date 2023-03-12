@@ -1,59 +1,72 @@
 package com.yikes.core.controller.admin;
 
-
 import com.yikes.common.result.Result;
-import com.yikes.core.pojo.vo.DictVO;
-import com.yikes.core.service.DictService;
+import com.yikes.core.model.req.DictAddReq;
+import com.yikes.core.model.req.DictEditReq;
+import com.yikes.core.model.req.DictPageReq;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.multipart.MultipartFile;
+import com.yikes.core.service.DictService;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+import javax.validation.Valid;
+
 
 /**
- * <p>
- * 数据字典 前端控制器
- * </p>
+ * 数据字典
  *
- * @author yikes
- * @since 2023-03-01
+ * @author guanrong.yin
+ * @email yikes_ygr@163.com
+ * @date 2023-03-12 02:28:15
  */
-@Slf4j
 @Api(tags = "数据字典")
 @RestController
-@RequestMapping("/core/dict/admin")
+@RequestMapping("/admin/core/dict")
 public class AdminDictController {
 
     @Resource
-    private DictService dictService;
+    private DictService service;
 
-    @ApiOperation("根据上级id获取子节点数据列表")
-    @GetMapping("/listByParentId")
-    public Result<List<DictVO>> listByParentId(@RequestParam(value = "parentId") Long parentId) {
 
-        List<DictVO> list = dictService.listByParentId(parentId);
-        return Result.build(list);
+    @ApiOperation("分页")
+    @PostMapping("/pageInfo")
+    public Result<?> pageInfo(@Valid @RequestBody DictPageReq req){
+
+        return Result.ok();
     }
 
-    @ApiOperation("Excel批量导入数据字典")
-    @PostMapping("/import")
-    public Result<?> batchImport(@ApiParam(value = "Excel文件", required = true)
-                                     @RequestPart("file") MultipartFile file) {
 
-        return Result.build(dictService.importData(file));
+    @ApiOperation("信息")
+    @GetMapping("/get")
+    public Result<?> get(@RequestParam("id") Long id){
+
+        return Result.ok();
     }
 
-    @ApiOperation("Excel数据的导出")
-    @PostMapping("/export")
-    public void export(HttpServletResponse response) {
 
-        dictService.export(response);
+    @ApiOperation("新增")
+    @PostMapping("/add")
+    public Result<?> add(@Valid @RequestBody DictAddReq req){
+
+        return Result.ok();
+    }
+
+
+    @ApiOperation("编辑")
+    @PutMapping("/edit")
+    public Result<?> edit(@Valid @RequestBody DictEditReq req){
+
+        return Result.ok();
+    }
+
+
+    @ApiOperation("删除")
+    @DeleteMapping("/remove")
+    public Result<?> remove(@RequestParam("id") Long id){
+
+        return Result.ok();
     }
 
 }

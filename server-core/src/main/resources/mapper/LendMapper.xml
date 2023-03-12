@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.yikes.core.mapper.LendMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yikes.core.pojo.entity.Lend" id="lendMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="borrowInfoId" column="borrow_info_id"/>
+        <result property="lendNo" column="lend_no"/>
+        <result property="title" column="title"/>
+        <result property="amount" column="amount"/>
+        <result property="period" column="period"/>
+        <result property="lendYearRate" column="lend_year_rate"/>
+        <result property="serviceRate" column="service_rate"/>
+        <result property="returnMethod" column="return_method"/>
+        <result property="lowestAmount" column="lowest_amount"/>
+        <result property="investAmount" column="invest_amount"/>
+        <result property="investNum" column="invest_num"/>
+        <result property="publishDate" column="publish_date"/>
+        <result property="lendStartDate" column="lend_start_date"/>
+        <result property="lendEndDate" column="lend_end_date"/>
+        <result property="lendInfo" column="lend_info"/>
+        <result property="expectAmount" column="expect_amount"/>
+        <result property="realAmount" column="real_amount"/>
+        <result property="status" column="status"/>
+        <result property="checkTime" column="check_time"/>
+        <result property="checkAdminId" column="check_admin_id"/>
+        <result property="paymentTime" column="payment_time"/>
+        <result property="paymentAdminId" column="payment_admin_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="isDeleted" column="is_deleted"/>
+    </resultMap>
+
 
 </mapper>

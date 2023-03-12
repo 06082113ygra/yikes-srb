@@ -1,18 +1,17 @@
 package com.yikes.core.mapper;
 
-import com.yikes.core.pojo.entity.UserIntegral;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yikes.core.pojo.entity.UserIntegral;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * <p>
- * 用户积分记录表 Mapper 接口
- * </p>
- *
- * @author yikes
- * @since 2023-03-01
+ * 用户积分记录表
+ * 
+ * @author guanrong.yin
+ * @email yikes_ygr@163.com
+ * @date 2023-03-12 02:28:15
  */
 @Mapper
 public interface UserIntegralMapper extends BaseMapper<UserIntegral> {
-
+	
 }

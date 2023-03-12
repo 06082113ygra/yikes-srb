@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false">
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
-    <property name="LOG_HOME" value="././logs/server-core"/>
+    <property name="LOG_HOME" value="./logs/server-core"/>
     <property name="ENCODING" value="UTF-8" />
 
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
@@ -9,7 +9,7 @@
     <!--覆盖spring-boot的按固定大小文件生成-->
     <!-- 按照每天生成日志文件 -->
     <!-- 通用日志 -->
-    <appender name="dailyFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="serviceInfoFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_HOME}/core-info.30dt.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
@@ -51,7 +51,7 @@
     <!-- 日志输出级别 -->
     <root level="info">
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="dailyFile"/>
+        <appender-ref ref="serviceInfoFile"/>
         <appender-ref ref="serviceERRORFile"/>
     </root>
     <logger name="DING_OPEN_CLIENT_SDK_LOGGER" level="OFF">

@@ -1,18 +1,17 @@
 package com.yikes.core.mapper;
 
-import com.yikes.core.pojo.entity.LendReturn;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yikes.core.pojo.entity.LendReturn;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * <p>
- * 还款记录表 Mapper 接口
- * </p>
- *
- * @author yikes
- * @since 2023-03-01
+ * 还款记录表
+ * 
+ * @author guanrong.yin
+ * @email yikes_ygr@163.com
+ * @date 2023-03-12 02:28:15
  */
 @Mapper
 public interface LendReturnMapper extends BaseMapper<LendReturn> {
-
+	
 }

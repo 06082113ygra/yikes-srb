@@ -42,3 +42,4 @@ mybatis-plus:
 knife4j:
   basic:
     enable: true
+

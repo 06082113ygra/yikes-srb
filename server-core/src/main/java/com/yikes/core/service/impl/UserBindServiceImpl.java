@@ -1,20 +1,14 @@
 package com.yikes.core.service.impl;
 
-import com.yikes.core.pojo.entity.UserBind;
 import com.yikes.core.mapper.UserBindMapper;
-import com.yikes.core.service.UserBindService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yikes.core.pojo.entity.UserBind;
 import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yikes.core.service.UserBindService;
 
-/**
- * <p>
- * 用户绑定表 服务实现类
- * </p>
- *
- * @author yikes
- * @since 2023-03-01
- */
-@Service
+
+@Service("userBindService")
 public class UserBindServiceImpl extends ServiceImpl<UserBindMapper, UserBind> implements UserBindService {
+
 
 }

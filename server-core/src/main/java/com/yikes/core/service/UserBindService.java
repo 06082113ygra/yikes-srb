@@ -1,16 +1,17 @@
 package com.yikes.core.service;
 
-import com.yikes.core.pojo.entity.UserBind;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yikes.core.pojo.entity.UserBind;
+
 
 /**
- * <p>
- * 用户绑定表 服务类
- * </p>
+ * 用户绑定表
  *
- * @author yikes
- * @since 2023-03-01
+ * @author guanrong.yin
+ * @email yikes_ygr@163.com
+ * @date 2023-03-12 02:28:15
  */
 public interface UserBindService extends IService<UserBind> {
 
 }
+
