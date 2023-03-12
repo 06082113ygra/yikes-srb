@@ -1,6 +1,5 @@
 package com.yikes.core.model.req;
 
-import com.yikes.base.page.PageForm;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -19,7 +18,7 @@ import java.math.BigDecimal;
 @Data
 @ToString
 @ApiModel(value = "IntegralGrade对象", description = "积分等级表")
-public class IntegralGradeEditReq extends PageForm {
+public class IntegralGradeEditReq {
 
     @ApiModelProperty("id")
     private Long id;

@@ -37,15 +37,36 @@ public enum BaseExceptionEnum implements ExceptionEnumFactory{
      */
     INSTANCE_OBJ_ERROR(HttpStatus.INTERNAL_SERVER_ERROR.value(), "服务内部错误, 实例化对象出错"),
 
+    /**
+     * 请求失败，非法的参数格式
+     */
+    ILLEGAL_MEDIA_TYPE(HttpStatus.BAD_REQUEST.value(), "请求失败，非法的参数格式"),
+    /**
+     * 请求方式出错
+     */
+    REQUEST_METHOD_ERROR(HttpStatus.BAD_REQUEST.value(), "请求方式出错"),
+    /**
+     * 操作过于频繁
+     */
+    IDEMPOTENT_ERROR(HttpStatus.BAD_REQUEST.value(), "操作过于频繁"),
+    /**
+     * 操作失败，数据不存在
+     */
+    DATA_NOT_EXIST(HttpStatus.BAD_REQUEST.value(), "操作失败，数据不存在"),
+    /**
+     * 操作失败，数据已存在
+     */
+    DATA_EXIST(HttpStatus.BAD_REQUEST.value(), "操作失败，数据已存在"),
+    /**
+     * 操作失败，请求参数有误
+     */
+    BAD_REQUEST_PARAMS(HttpStatus.BAD_REQUEST.value(), "操作失败，请求参数有误"),
 
     // 删除失败
     DELETION_FAILURE(10000, "删除失败，无此数据"),
 
     // 保存失败
     SAVE_FAILURE(10001, "保存失败，数据格式有误"),
-
-    // 数据不存在
-    DATA_NOT_EXIST(10002, "数据不存在"),
 
     // 修改失败
     MODIFY_FAILURE(10003, "修改失败，"),

@@ -1,9 +1,11 @@
 package com.yikes.core.controller.admin;
 
+import com.yikes.base.page.PageResult;
 import com.yikes.common.result.Result;
 import com.yikes.core.model.req.IntegralGradeAddReq;
 import com.yikes.core.model.req.IntegralGradeEditReq;
 import com.yikes.core.model.req.IntegralGradePageReq;
+import com.yikes.core.model.vo.IntegralGradeVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -32,40 +34,42 @@ public class AdminIntegralGradeController {
 
     @ApiOperation("分页")
     @PostMapping("/pageInfo")
-    public Result<?> pageInfo(@Valid @RequestBody IntegralGradePageReq req){
+    public Result<PageResult<IntegralGradeVO>> pageInfo(@Valid @RequestBody IntegralGradePageReq req){
 
-        return Result.ok();
+        return Result.ok(service.pageInfo(req));
     }
-
 
     @ApiOperation("信息")
     @GetMapping("/get")
-    public Result<?> get(@RequestParam("id") Long id){
+    public Result<IntegralGradeVO> get(@RequestParam("id") Long id){
 
-        return Result.ok();
+        return Result.ok(service.get(id));
     }
 
 
     @ApiOperation("新增")
     @PostMapping("/add")
-    public Result<?> add(@Valid @RequestBody IntegralGradeAddReq req){
+    public Result<Void> add(@Valid @RequestBody IntegralGradeAddReq req){
 
+        service.add(req);
         return Result.ok();
     }
 
 
     @ApiOperation("编辑")
     @PutMapping("/edit")
-    public Result<?> edit(@Valid @RequestBody IntegralGradeEditReq req){
+    public Result<Void> edit(@Valid @RequestBody IntegralGradeEditReq req){
 
+        service.edit(req);
         return Result.ok();
     }
 
 
     @ApiOperation("删除")
     @DeleteMapping("/remove")
-    public Result<?> remove(@RequestParam("id") Long id){
+    protected Result<Void> remove(@RequestParam("id") Long id){
 
+        service.removeById(id);
         return Result.ok();
     }
 

@@ -1,10 +1,13 @@
 package com.yikes.core.model.vo;
 
 import java.util.Date;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,6 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Data
 @ToString
+@NoArgsConstructor
 @ApiModel("数据字典")
 public class DictVO {
 
@@ -45,4 +49,6 @@ public class DictVO {
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
 
+	@ApiModelProperty("下级数据")
+	private List<DictVO> child;
 }

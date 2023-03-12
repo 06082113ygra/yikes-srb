@@ -4,6 +4,8 @@ import com.yikes.common.result.Result;
 import com.yikes.core.model.req.DictAddReq;
 import com.yikes.core.model.req.DictEditReq;
 import com.yikes.core.model.req.DictPageReq;
+import com.yikes.core.model.vo.DictVO;
+import com.yikes.core.pojo.entity.Dict;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,7 @@ import com.yikes.core.service.DictService;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.List;
 
 
 /**
@@ -29,26 +32,26 @@ public class AdminDictController {
     @Resource
     private DictService service;
 
+    @ApiOperation("数据字典-list")
+    @GetMapping("/listInfo")
+    public Result<List<DictVO>> listInfo() {
 
-    @ApiOperation("分页")
-    @PostMapping("/pageInfo")
-    public Result<?> pageInfo(@Valid @RequestBody DictPageReq req){
-
-        return Result.ok();
+        return Result.ok(service.listInfo());
     }
 
 
-    @ApiOperation("信息")
-    @GetMapping("/get")
-    public Result<?> get(@RequestParam("id") Long id){
+    @ApiOperation("根据上级id获取子节点数据列表")
+    @GetMapping("/listByParentId")
+    public Result<List<Dict>> listByParentId(@RequestParam(value = "parentId", required = false) Long parentId) {
 
+//        List<Dict> list = service.listByParentId(parentId);
         return Result.ok();
     }
 
 
     @ApiOperation("新增")
     @PostMapping("/add")
-    public Result<?> add(@Valid @RequestBody DictAddReq req){
+    public Result<?> add(@Valid @RequestBody DictAddReq req) {
 
         return Result.ok();
     }
@@ -56,17 +59,25 @@ public class AdminDictController {
 
     @ApiOperation("编辑")
     @PutMapping("/edit")
-    public Result<?> edit(@Valid @RequestBody DictEditReq req){
+    public Result<?> edit(@Valid @RequestBody DictEditReq req) {
 
         return Result.ok();
     }
 
 
     @ApiOperation("删除")
-    @DeleteMapping("/remove")
-    public Result<?> remove(@RequestParam("id") Long id){
+    @DeleteMapping("/removeDictChild")
+    public Result<?> removeDictChild(@RequestParam("id") Long id) {
 
+        service.removeDictChild(id);
         return Result.ok();
+    }
+
+    @ApiOperation("数据字典-无返回")
+    @GetMapping("/return/getTreeDict")
+    public void getTreeDict() {
+
+        service.getTreeDict();
     }
 
 }
