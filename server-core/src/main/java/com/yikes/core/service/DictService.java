@@ -3,9 +3,11 @@ package com.yikes.core.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yikes.core.model.req.DictAddReq;
 import com.yikes.core.model.req.DictEditReq;
+import com.yikes.core.model.req.DictPageReq;
 import com.yikes.core.model.vo.DictVO;
 import com.yikes.core.pojo.entity.Dict;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 
@@ -54,6 +56,11 @@ public interface DictService extends IService<Dict> {
      */
     void getTreeDict();
 
-
+    /**
+     * Excel数据的导出
+     * @param req
+     * @param response
+     */
+    void export(HttpServletResponse response);
 }
 

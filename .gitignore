@@ -20,7 +20,6 @@
 *.rar
 .idea
 mvnw
-test
 *.iml
 *.cmd
 logs

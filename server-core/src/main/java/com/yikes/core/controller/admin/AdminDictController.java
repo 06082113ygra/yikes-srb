@@ -5,7 +5,6 @@ import com.yikes.core.model.req.DictAddReq;
 import com.yikes.core.model.req.DictEditReq;
 import com.yikes.core.model.req.DictPageReq;
 import com.yikes.core.model.vo.DictVO;
-import com.yikes.core.pojo.entity.Dict;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import com.yikes.core.service.DictService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -82,11 +82,11 @@ public class AdminDictController {
         service.getTreeDict();
     }
 
-    @ApiOperation("导出")
+    @ApiOperation("Excel数据的导出")
     @PostMapping("/export")
-    public void export() {
+    public void export(HttpServletResponse response) {
 
-        this.export();;
+        service.export(response);
     }
 
 //    @ApiOperation("导入数据")

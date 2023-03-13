@@ -1,15 +1,21 @@
 package com.yikes.core.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.yikes.base.util.BeanSuperUtil;
 import com.yikes.common.enums.BaseExceptionEnum;
 import com.yikes.common.exception.CommonException;
 import com.yikes.common.utils.As;
+import com.yikes.common.utils.ExcelUtils;
 import com.yikes.core.model.req.DictAddReq;
 import com.yikes.core.model.req.DictEditReq;
+import com.yikes.core.model.req.DictPageReq;
 import com.yikes.core.model.vo.DictVO;
 import com.yikes.core.pojo.entity.Dict;
+import com.yikes.core.pojo.excel.DictExcel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -17,6 +23,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yikes.core.mapper.DictMapper;
 import com.yikes.core.service.DictService;
 
+import javax.servlet.http.HttpServletResponse;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -84,6 +93,34 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
                 // 设置子节点信息
                 vo -> vo.setChild(getChildrens(vo, dictVOList))
         ).collect(Collectors.toList());
+    }
+
+    @Override
+    public void export(HttpServletResponse response) {
+
+//        List<Dict> list = lambdaQuery().eq(ObjectUtil.isNotNull(req.getId()), Dict::getId, req.getId())
+//                .eq(ObjectUtil.isNotNull(req.getParentId()), Dict::getParentId, req.getParentId())
+//                .eq(StrUtil.isNotBlank(req.getName()), Dict::getName, req.getName())
+//                .eq(ObjectUtil.isNotNull(req.getValue()), Dict::getValue, req.getValue())
+//                .eq(StrUtil.isNotBlank(req.getDictCode()), Dict::getDictCode, req.getDictCode()).list();
+
+        List<Dict> list = this.list();
+        log.info("list sout.list.size()::{}", list);
+        try {
+            String dateStr = LocalDate.now().format(DateTimeFormatter.ofPattern(DatePattern.PURE_DATE_PATTERN));
+
+            String sheelName = "数据字典";
+            String fileName = dateStr + sheelName;
+
+            List<DictExcel> dictExcelList = BeanSuperUtil.convertList(list, DictExcel.class);
+            log.info("export Dict start，size {}", dictExcelList.size());
+
+            ExcelUtils.excelExport(dictExcelList, sheelName, fileName, DictExcel.class, response);
+
+        } catch (Exception e) {
+            log.info("export AppealAccept error",e);
+        }
+
     }
 
     // 查询子节点
