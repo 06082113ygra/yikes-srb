@@ -3,6 +3,11 @@ package com.yikes.core.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.yikes.base.util.BeanSuperUtil;
+import com.yikes.common.enums.BaseExceptionEnum;
+import com.yikes.common.exception.CommonException;
+import com.yikes.common.utils.As;
+import com.yikes.core.model.req.DictAddReq;
+import com.yikes.core.model.req.DictEditReq;
 import com.yikes.core.model.vo.DictVO;
 import com.yikes.core.pojo.entity.Dict;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +31,30 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
     public List<DictVO> listInfo() {
 
         return this.getChildrenNode(0L);
+    }
+
+    @Override
+    public List<DictVO> listByParentId(Long parentId) {
+
+        return this.getChildrenNode(parentId);
+    }
+
+    @Override
+    public void add(DictAddReq req) {
+
+        Dict dict = getById(req.getParentId());
+        As.isNotNull(dict, CommonException.build(BaseExceptionEnum.PARENTID_DATA_NOT_EXIST));
+
+        save(BeanSuperUtil.convert(req, Dict.class));
+    }
+
+    @Override
+    public void edit(DictEditReq req) {
+
+        Dict dict = getById(req.getId());
+        As.isNotNull(dict, CommonException.build(BaseExceptionEnum.DATA_NOT_EXIST));
+
+        updateById(BeanSuperUtil.convert(req, Dict.class));
     }
 
     @Override
@@ -55,8 +84,6 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
                 // 设置子节点信息
                 vo -> vo.setChild(getChildrens(vo, dictVOList))
         ).collect(Collectors.toList());
-
-        log.info("voList::", voList);
     }
 
     // 查询子节点

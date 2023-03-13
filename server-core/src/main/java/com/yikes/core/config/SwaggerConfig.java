@@ -13,6 +13,7 @@ import springfox.documentation.spring.web.plugins.ApiSelectorBuilder;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import javax.print.Doc;
 import java.util.function.Predicate;
 
 /**
@@ -43,7 +44,6 @@ public class SwaggerConfig {
                 .paths(this::filterPath)
 //                .paths(PathSelectors.any())
                 .build();
-
     }
 
     private boolean filterPath(String path) {
@@ -54,12 +54,37 @@ public class SwaggerConfig {
 
     private ApiInfo adminApiInfo() {
         return new ApiInfoBuilder()
-                .title("yikes-srb平台")
+                .title("yikes-srb-admin后台管理系统平台")
                 .description("defaultAdminApi是一个网络借贷信息中介服务-后台管理系统")
                 .termsOfServiceUrl("https://www.yikes-demo.com")
                 .version("1.0")
                 .contact(new Contact("yikes", "www.yikes-demo.com", "yikes_ygr@163.com"))
                 .build();
 
+    }
+
+    @Bean(value = "defaultAppApi")
+    public Docket defaultAppApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .enableUrlTemplating(false)
+                .apiInfo(appApiInfo())
+                .groupName("app")
+                .select()
+//                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+                .apis(RequestHandlerSelectors.basePackage("com.yikes.core.controller.admin"))
+                .paths(this::filterPath)
+                .build();
+
+    }
+
+    private ApiInfo appApiInfo() {
+
+        return new ApiInfoBuilder()
+                .title("yikes-srb-app端管理系统平台")
+                .description("移动端平台管理系统-接口")
+                .termsOfServiceUrl("https://www.yikes.com")
+                .version("1.0.0")
+                .contact(new Contact("yikes", "www.yikes.com", "m13627046506_1@163.com"))
+                .build();
     }
 }

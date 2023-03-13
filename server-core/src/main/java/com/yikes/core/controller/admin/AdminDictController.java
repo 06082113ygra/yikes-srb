@@ -42,10 +42,10 @@ public class AdminDictController {
 
     @ApiOperation("根据上级id获取子节点数据列表")
     @GetMapping("/listByParentId")
-    public Result<List<Dict>> listByParentId(@RequestParam(value = "parentId", required = false) Long parentId) {
+    public Result<List<DictVO>> listByParentId(@RequestParam(value = "parentId") Long parentId) {
 
-//        List<Dict> list = service.listByParentId(parentId);
-        return Result.ok();
+        List<DictVO> list = service.listByParentId(parentId);
+        return Result.ok(list);
     }
 
 
@@ -53,6 +53,7 @@ public class AdminDictController {
     @PostMapping("/add")
     public Result<?> add(@Valid @RequestBody DictAddReq req) {
 
+        service.add(req);
         return Result.ok();
     }
 
@@ -61,6 +62,7 @@ public class AdminDictController {
     @PutMapping("/edit")
     public Result<?> edit(@Valid @RequestBody DictEditReq req) {
 
+        service.edit(req);
         return Result.ok();
     }
 
@@ -79,5 +81,14 @@ public class AdminDictController {
 
         service.getTreeDict();
     }
+
+    @ApiOperation("导出")
+    @PostMapping("/export")
+    public void export() {
+
+        this.export();;
+    }
+
+//    @ApiOperation("导入数据")
 
 }

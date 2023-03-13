@@ -53,6 +53,8 @@ public enum BaseExceptionEnum implements ExceptionEnumFactory{
      * 操作失败，数据不存在
      */
     DATA_NOT_EXIST(HttpStatus.BAD_REQUEST.value(), "操作失败，数据不存在"),
+
+    PARENTID_DATA_NOT_EXIST(HttpStatus.BAD_REQUEST.value(), "操作失败，父id数据不存在"),
     /**
      * 操作失败，数据已存在
      */
